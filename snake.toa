@@ -1,0 +1,81 @@
+```text
+TOA 2.0
+
+[APP]
+id=snake
+name=SnakeOS
+version=1.0.0
+author=TerminalOS
+description=TerminalOS için klasik yılan oyunu
+icon=🐍
+entry=main
+
+[DATA]
+width=30
+height=20
+cell_size=25
+score=0
+highscore=0
+speed=120
+direction=right
+
+[FRONTEND]
+WINDOW title="SnakeOS" width=850 height=650
+
+LABEL id=score text="Skor: 0"
+LABEL id=highscore text="Rekor: 0"
+
+GAME id=game width=750 height=500
+
+BUTTON id=start text="Başlat"
+BUTTON id=pause text="Duraklat"
+BUTTON id=restart text="Yeniden Başlat"
+
+[EVENTS]
+
+start:
+GAME_START target=game
+
+pause:
+GAME_PAUSE target=game
+
+restart:
+GAME_RESTART target=game
+
+UP:
+GAME_DIRECTION target=game direction=up
+
+DOWN:
+GAME_DIRECTION target=game direction=down
+
+LEFT:
+GAME_DIRECTION target=game direction=left
+
+RIGHT:
+GAME_DIRECTION target=game direction=right
+
+TICK:
+GAME_STEP target=game
+
+FOOD:
+SET key=score value=$score+1
+
+ENDGAME:
+GAME_OVER target=game
+
+[BACKEND]
+
+STORAGE_GET key=highscore target=highscore
+
+GAME_INIT target=game
+GAME_SIZE target=game width=$width height=$height
+GAME_CELL target=game size=$cell_size
+GAME_SPEED target=game value=$speed
+
+GAME_SNAKE target=game
+GAME_FOOD target=game
+
+SET key=score value=0
+
+END
+```
