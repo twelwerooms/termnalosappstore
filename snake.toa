@@ -1,4 +1,3 @@
-```text
 TOA 2.0
 
 [APP]
@@ -78,4 +77,4 @@ GAME_FOOD target=game
 SET key=score value=0
 
 END
-```
+
