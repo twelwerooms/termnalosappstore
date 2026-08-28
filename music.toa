@@ -1,0 +1,67 @@
+TOA 2.0
+
+[APP]
+id=music
+name=Music Player
+version=1.0.0
+author=TerminalOS
+description=TerminalOS müzik oynatıcı
+icon=🎵
+entry=main
+
+[DATA]
+music_folder=Music
+volume=75
+autoplay=false
+
+[FRONTEND]
+WINDOW title="Music Player" width=850 height=550
+
+LABEL id=title text="🎵 TerminalOS Music Player"
+
+LABEL id=track text="Şarkı seçilmedi"
+
+BUTTON id=open text="Müzik seç"
+BUTTON id=previous text="⏮"
+BUTTON id=play text="▶"
+BUTTON id=pause text="⏸"
+BUTTON id=stop text="⏹"
+BUTTON id=next text="⏭"
+
+SLIDER id=volume minimum=0 maximum=100 value=75
+SLIDER id=position minimum=0 maximum=100 value=0
+
+LIST id=playlist
+
+[EVENTS]
+
+open:
+FILE_OPEN id=file filter="Audio (*.mp3 *.wav *.ogg *.flac *.m4a)"
+
+previous:
+PLAYER_PREVIOUS target=player
+
+play:
+PLAY target=player
+
+pause:
+PAUSE target=player
+
+stop:
+STOP target=player
+
+next:
+PLAYER_NEXT target=player
+
+[BACKEND]
+
+MUSIC_PLAYER id=player
+
+SET key=volume value=75
+
+VOLUME target=player value=$volume
+
+PLAYLIST_SCAN target=playlist folder=Music
+
+END
+
