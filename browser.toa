@@ -1,39 +1,46 @@
-TOA 1.0
+TOA 2.0
 
 [APP]
 id=browser
 name=TerminalOS Browser
 version=1.0.0
 author=TerminalOS
-description=Güvenli web tarayıcısı
+description=TerminalOS için web tarayıcısı
 icon=🌐
 entry=main
 
-[CODE]
-main:
+[DATA]
+homepage=https://www.google.com
+useragent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.8027.0 Safari/537.36
+
+[FRONTEND]
 WINDOW title="TerminalOS Browser" width=1200 height=750
 
-LABEL id="address_label" text="Adres"
+LABEL id=title text="TerminalOS Browser"
 
-INPUT id="address" placeholder="https://www.google.com"
+INPUT id=url placeholder="Adres gir..."
 
-BUTTON id="back" text="←"
-BUTTON id="forward" text="→"
-BUTTON id="reload" text="⟳"
-BUTTON id="go" text="Git"
+BUTTON id=back text="←"
+BUTTON id=forward text="→"
+BUTTON id=reload text="⟳"
+BUTTON id=go text="Git"
 
-BROWSER id="browser_view" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.8027.0 Safari/537.36" homepage="https://www.google.com"
+BROWSER id=web homepage="$homepage" useragent="$useragent"
 
-ON go:
-NAVIGATE target=browser_view url=$address
+[EVENTS]
 
-ON reload:
-RELOAD target=browser_view
+back:
+BACK target=web
 
-ON back:
-BACK target=browser_view
+forward:
+FORWARD target=web
 
-ON forward:
-FORWARD target=browser_view
+reload:
+RELOAD target=web
 
-END
+go:
+NAVIGATE target=web url=$url
+
+[BACKEND]
+
+SET key=current_url value=$homepage
