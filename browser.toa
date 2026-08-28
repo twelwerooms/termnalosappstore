@@ -1,0 +1,39 @@
+TOA 1.0
+
+[APP]
+id=browser
+name=TerminalOS Browser
+version=1.0.0
+author=TerminalOS
+description=Güvenli web tarayıcısı
+icon=🌐
+entry=main
+
+[CODE]
+main:
+WINDOW title="TerminalOS Browser" width=1200 height=750
+
+LABEL id="address_label" text="Adres"
+
+INPUT id="address" placeholder="https://www.google.com"
+
+BUTTON id="back" text="←"
+BUTTON id="forward" text="→"
+BUTTON id="reload" text="⟳"
+BUTTON id="go" text="Git"
+
+BROWSER id="browser_view" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.8027.0 Safari/537.36" homepage="https://www.google.com"
+
+ON go:
+NAVIGATE target=browser_view url=$address
+
+ON reload:
+RELOAD target=browser_view
+
+ON back:
+BACK target=browser_view
+
+ON forward:
+FORWARD target=browser_view
+
+END
