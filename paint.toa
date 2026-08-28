@@ -1,0 +1,71 @@
+TOA 2.0
+
+[APP]
+id=paint
+name=PaintOS
+version=1.0.0
+author=TerminalOS
+description=TerminalOS için basit çizim uygulaması
+icon=🎨
+entry=main
+
+[DATA]
+canvas_width=900
+canvas_height=600
+background=#ffffff
+brush_size=5
+tool=pencil
+
+[FRONTEND]
+WINDOW title="PaintOS" width=1000 height=720
+
+LABEL id=title text="PaintOS"
+
+BUTTON id=pencil text="Kalem"
+BUTTON id=eraser text="Silgi"
+BUTTON id=line text="Çizgi"
+BUTTON id=rect text="Dikdörtgen"
+BUTTON id=circle text="Daire"
+BUTTON id=clear text="Temizle"
+BUTTON id=save text="Kaydet"
+
+COLORPICKER id=color value=#000000
+
+SPINBOX id=size value=5 minimum=1 maximum=100
+
+CANVAS id=canvas width=900 height=600 background=#ffffff
+
+[EVENTS]
+
+pencil:
+SET key=tool value=pencil
+
+eraser:
+SET key=tool value=eraser
+
+line:
+SET key=tool value=line
+
+rect:
+SET key=tool value=rect
+
+circle:
+SET key=tool value=circle
+
+clear:
+CANVAS_CLEAR target=canvas
+
+save:
+CANVAS_SAVE target=canvas format=png
+
+[BACKEND]
+
+SET key=tool value=pencil
+SET key=color value=#000000
+SET key=brush_size value=5
+
+DRAW_MODE target=canvas mode=$tool
+DRAW_COLOR target=canvas color=$color
+DRAW_SIZE target=canvas size=$brush_size
+
+END
